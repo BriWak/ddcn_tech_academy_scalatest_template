@@ -8,4 +8,7 @@ object Crossover extends App {
     (start1 + end2, start2 + end1)
   }
 
+  def allCombinations(stringOne: String, stringTwo: String) : List[(String,String)] = {
+    (0 to stringOne.length).toList.map(index => Crossover(stringOne,stringTwo,index))
+  }
 }

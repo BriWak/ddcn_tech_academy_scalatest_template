@@ -27,9 +27,26 @@ class CrossoverSpec extends WordSpec with MustMatchers {
     "return 1111, 0000 when given 1111, 0000, 4" in {
       Crossover("1111", "0000", 4) mustEqual("1111", "0000")
     }
-    
+
     "return 1110000, 0001111 when given 1111111, 0000000, 3" in {
       Crossover("1111111", "0000000", 3) mustEqual("1110000", "0001111")
+    }
+  }
+
+  "allCombinations" must {
+
+    "return (0,1),(1,0) combinations when given 1,0" in {
+    Crossover.allCombinations("1", "0") mustEqual List(("0","1"),("1","0"))
+    }
+
+    "return (00,11),(10,01),(11,00) combinations when given 11,00" in {
+      Crossover.allCombinations("11", "00") mustEqual List(("00","11"),("10","01"),("11","00"))
+    }
+
+    "return all combinations when given 1111111,0000000" in {
+      Crossover.allCombinations("1111111", "0000000") mustEqual
+        List(("0000000","1111111"), ("1000000","0111111"), ("1100000","0011111"), ("1110000","0001111"),
+          ("1111000","0000111"), ("1111100","0000011"), ("1111110","0000001"), ("1111111","0000000"))
     }
   }
 }
